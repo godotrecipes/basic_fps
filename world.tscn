@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://cko0shujbpmbl"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_cn7tx"]
+[ext_resource type="Texture2D" uid="uid://dkw71bm48xp0b" path="res://assets/kenney_prototypetextures/PNG/Dark/texture_01.png" id="1_johya"]
+[ext_resource type="MeshLibrary" uid="uid://bf5k0xjh4i5fs" path="res://wall_blocks.meshlib" id="2_jcwl8"]
+[ext_resource type="PackedScene" uid="uid://bnvo4l2v3cx1l" path="res://fps_player.tscn" id="3_lanv0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_56na7"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_q2whg"]
+sky_material = SubResource("ProceduralSkyMaterial_56na7")
+
+[sub_resource type="Environment" id="Environment_8f83f"]
+background_mode = 2
+sky = SubResource("Sky_q2whg")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ep2r"]
+albedo_texture = ExtResource("1_johya")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v8iii"]
+material = SubResource("StandardMaterial3D_0ep2r")
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ms82q"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_cn7tx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8f83f")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_v8iii")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ms82q")
+
+[node name="Walls" type="GridMap" parent="."]
+mesh_library = ExtResource("2_jcwl8")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 65535, 2, 65535, 65535, 2, 65534, 65535, 2, 65533, 65535, 2, 65532, 65535, 2, 65531, 65535, 2, 65530, 65535, 2, 65529, 65535, 2, 65528, 65535, 2, 65531, 65526, 2, 65531, 65527, 2, 65531, 65528, 2, 65531, 65529, 2, 65531, 65530, 2, 65531, 65531, 2, 65531, 65532, 2, 65531, 65533, 2, 65531, 65534, 2, 12, 65535, 0, 12, 0, 0, 12, 1, 0, 11, 2, 0, 11, 3, 0, 11, 4, 0, 11, 5, 0, 11, 6, 0, 11, 7, 0, 12, 2, 0, 12, 7, 0, 13, 7, 0, 14, 7, 0, 15, 7, 0, 16, 7, 0, 10, 7, 0, 9, 7, 0, 8, 7, 0, 7, 7, 0, 6, 7, 0, 65524, 11, 1, 65525, 11, 1, 65526, 11, 1, 65529, 11, 1, 65530, 11, 1, 65531, 11, 1, 65532, 11, 1, 65535, 11, 1, 0, 11, 1, 65534, 11, 1, 65533, 11, 1, 65528, 11, 1, 65527, 11, 1, 0, 12, 1, 2, 16, 1, 1, 16, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 65535, 21, 1, 65534, 21, 1, 65533, 21, 1, 65532, 21, 1, 65531, 21, 1, 65530, 21, 1, 65529, 21, 1, 65528, 21, 1, 65527, 21, 1, 65526, 21, 1, 65525, 21, 1, 65524, 21, 1, 65523, 11, 1, 65523, 12, 1, 65523, 13, 1, 65523, 14, 1, 65536, 65535, 2, 131071, 65535, 2, 131070, 65535, 2, 131069, 65535, 2, 131068, 65535, 2, 131067, 65535, 2, 131066, 65535, 2, 131065, 65535, 2, 131064, 65535, 2, 131067, 65526, 2, 131067, 65527, 2, 131067, 65528, 2, 131067, 65529, 2, 131067, 65530, 2, 131067, 65531, 2, 131067, 65532, 2, 131067, 65533, 2, 131067, 65534, 2, 65542, 7, 0, 65543, 7, 0, 65544, 7, 0, 65545, 7, 0, 65546, 7, 0, 65547, 7, 0, 65548, 7, 0, 65549, 7, 0, 65550, 7, 0, 65551, 7, 0, 65552, 7, 0, 65547, 5, 0, 65547, 6, 0, 65547, 3, 0, 65547, 2, 0, 65548, 2, 0, 65548, 1, 0, 65548, 65535, 0, 65548, 0, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="FPSPlayer" parent="." instance=ExtResource("3_lanv0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.84131)
