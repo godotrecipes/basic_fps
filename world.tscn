@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cko0shujbpmbl"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_cn7tx"]
+[ext_resource type="Script" uid="uid://df088338g2a4w" path="res://world.gd" id="1_cn7tx"]
 [ext_resource type="Texture2D" uid="uid://dkw71bm48xp0b" path="res://assets/kenney_prototypetextures/PNG/Dark/texture_01.png" id="1_johya"]
 [ext_resource type="MeshLibrary" uid="uid://bf5k0xjh4i5fs" path="res://wall_blocks.meshlib" id="2_jcwl8"]
 [ext_resource type="PackedScene" uid="uid://bnvo4l2v3cx1l" path="res://fps_player.tscn" id="3_lanv0"]

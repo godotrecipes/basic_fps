@@ -16,6 +16,10 @@ dest_files=["res://.godot/imported/shotgun.obj-7afb2b1d55c967f9fdb928bcc1d505d5.
 [params]
 
 generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
 scale_mesh=Vector3(10, 10, 10)
 offset_mesh=Vector3(0, 0, 0)
-optimize_mesh=true
+force_disable_mesh_compression=false
